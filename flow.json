@@ -1,1 +1,559 @@
-[]
+[
+    {
+        "id": "d330a0772780126e",
+        "type": "tab",
+        "label": "Excavator Control Flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "55d5cfdcf261b351",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.emqx.io",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f56460f10e7a933a",
+        "type": "ui_tab",
+        "name": "Excavator Control",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4efd622c63e10aca",
+        "type": "ui_group",
+        "name": "Excavator Control",
+        "tab": "f56460f10e7a933a",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "053402e8dca4bfc3",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "3d8088649455c252",
+        "type": "ui_link",
+        "name": "Simulator",
+        "link": "https://rwth-crmasters-sose22.gitlab.io/course-material/excavator-simulator/simple.html",
+        "icon": "open_in_browser",
+        "target": "newtab",
+        "order": 2
+    },
+    {
+        "id": "289ae65c4da60d3e",
+        "type": "ui_group",
+        "name": "Joints",
+        "tab": "f56460f10e7a933a",
+        "order": 2,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1ae082d0b2483fa2",
+        "type": "mqtt out",
+        "z": "d330a0772780126e",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "0.5",
+        "broker": "55d5cfdcf261b351",
+        "x": 930,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c57755911112c95b",
+        "type": "template",
+        "z": "d330a0772780126e",
+        "name": "command",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "rwth/bcma/sessions/{{flow.session}}/command",
+        "output": "str",
+        "x": 560,
+        "y": 80,
+        "wires": [
+            [
+                "7466fa3ba965ce0c"
+            ]
+        ]
+    },
+    {
+        "id": "5d60698c31d159bc",
+        "type": "ui_text_input",
+        "z": "d330a0772780126e",
+        "name": "",
+        "label": "Session",
+        "tooltip": "",
+        "group": "4efd622c63e10aca",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": 300,
+        "topic": "session",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "4b46c60a88b71feb"
+            ]
+        ]
+    },
+    {
+        "id": "4b46c60a88b71feb",
+        "type": "change",
+        "z": "d330a0772780126e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "session",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 80,
+        "wires": [
+            [
+                "c57755911112c95b"
+            ]
+        ]
+    },
+    {
+        "id": "f459b05a8d8fabe5",
+        "type": "ui_slider",
+        "z": "d330a0772780126e",
+        "name": "",
+        "label": "q0 🏠",
+        "tooltip": "cabin - spin",
+        "group": "4efd622c63e10aca",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "all",
+        "topic": "q0",
+        "topicType": "str",
+        "min": "-3.141592653589793",
+        "max": "3.141592653589793",
+        "step": "0.01",
+        "className": "",
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "eeddfc582b622107"
+            ]
+        ]
+    },
+    {
+        "id": "65af2b79ddf2324f",
+        "type": "ui_slider",
+        "z": "d330a0772780126e",
+        "name": "",
+        "label": "q1 🧹",
+        "tooltip": "arm - left/right",
+        "group": "4efd622c63e10aca",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "all",
+        "topic": "q1",
+        "topicType": "str",
+        "min": "-0.7853981633974483",
+        "max": "0.7853981633974483",
+        "step": "0.01",
+        "className": "",
+        "x": 90,
+        "y": 200,
+        "wires": [
+            [
+                "eeddfc582b622107"
+            ]
+        ]
+    },
+    {
+        "id": "a0ea133b0fc73149",
+        "type": "ui_slider",
+        "z": "d330a0772780126e",
+        "name": "",
+        "label": "q2 🦿",
+        "tooltip": "back arm - up/down",
+        "group": "4efd622c63e10aca",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "all",
+        "topic": "q2",
+        "topicType": "str",
+        "min": "-0.2",
+        "max": "0",
+        "step": "0.01",
+        "className": "",
+        "x": 90,
+        "y": 260,
+        "wires": [
+            [
+                "eeddfc582b622107"
+            ]
+        ]
+    },
+    {
+        "id": "fa1d4dfb8df5ee0b",
+        "type": "ui_slider",
+        "z": "d330a0772780126e",
+        "name": "",
+        "label": "q3 🦾",
+        "tooltip": " front arm - up/down",
+        "group": "4efd622c63e10aca",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "all",
+        "topic": "q3",
+        "topicType": "str",
+        "min": "-0.41",
+        "max": "0",
+        "step": "0.01",
+        "className": "",
+        "x": 90,
+        "y": 320,
+        "wires": [
+            [
+                "eeddfc582b622107"
+            ]
+        ]
+    },
+    {
+        "id": "59322520e0d393f1",
+        "type": "ui_slider",
+        "z": "d330a0772780126e",
+        "name": "",
+        "label": "q4 🥄",
+        "tooltip": "shovel",
+        "group": "4efd622c63e10aca",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "all",
+        "topic": "q4",
+        "topicType": "str",
+        "min": "-0.32",
+        "max": "0",
+        "step": "0.01",
+        "className": "",
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "eeddfc582b622107"
+            ]
+        ]
+    },
+    {
+        "id": "88aed765ecaf2910",
+        "type": "ui_slider",
+        "z": "d330a0772780126e",
+        "name": "",
+        "label": "q5 🛡️",
+        "tooltip": "shield",
+        "group": "4efd622c63e10aca",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "all",
+        "topic": "q5",
+        "topicType": "str",
+        "min": "0",
+        "max": "0.14",
+        "step": "0.01",
+        "className": "",
+        "x": 90,
+        "y": 440,
+        "wires": [
+            [
+                "eeddfc582b622107"
+            ]
+        ]
+    },
+    {
+        "id": "ec730385ef81bacd",
+        "type": "template",
+        "z": "d330a0772780126e",
+        "name": "set command",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{    \n    \"command\": \"setJointValue\",\n    \"jointName\": \"{{flow.jointName}}\",\n    \"jointValue\": {{flow.jointValue}}\n}",
+        "output": "json",
+        "x": 440,
+        "y": 260,
+        "wires": [
+            [
+                "c57755911112c95b"
+            ]
+        ]
+    },
+    {
+        "id": "eeddfc582b622107",
+        "type": "change",
+        "z": "d330a0772780126e",
+        "name": "set value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "jointValue",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "jointName",
+                "pt": "flow",
+                "to": "topic",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 260,
+        "wires": [
+            [
+                "ec730385ef81bacd"
+            ]
+        ]
+    },
+    {
+        "id": "24daa82e4e72bbb5",
+        "type": "ui_svg_graphics",
+        "z": "d330a0772780126e",
+        "group": "289ae65c4da60d3e",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" viewBox=\"0 0 300 300\" preserveAspectRatio=\"xMidYMid meet\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill: none; stroke: none;\"/>\n  <!-- Add here your SVG shapes (circles, rectangles, ...) -->\n  <!-- Or remove everything, if you want to paste an entire drawing (<svg...>...</svg>).-->\n  <polygon style=\"stroke:black;fill:orange;stroke-width:1px\" id=\"e1_polygon\" points=\"34.7591 81.3752 49.7329 74.423 88.1489 74.3416 101.425 81.3752 88.9486 89.575 48.8412 89.0398\" transform=\"matrix(2.63439 0 0 2.63439 -85.5948 -11.4463)\"/>\n  <rect x=\"54.280400\" y=\"31.494900\" style=\"fill:black;stroke:black;stroke-width:1px\" id=\"e2_rectangle\" width=\"28.164000\" height=\"29.590000\" ry=\"6.28057\" rx=\"6.28057\" transform=\"matrix(2.63439 0 0 2.63439 -85.5948 -11.4463)\"/>\n  \n  <polygon style=\"stroke:black;fill:yellow;stroke-width:1px\" id=\"e7_polygon\" points=\"109.305,9.00636,124.991,5.0844,125.525,6.86741,109.84,11.5013\" transform=\"matrix(1.38064 2.24364 -2.24364 1.38064 105.838 -171.902)\"/>\n  <path d=\"M12.523989,9.953847l-1.25,1.875v-1.25c-10,0,-8,-6.25,0,-6.25v1.25c-10,0,-8,3.75,0,3.75v-1.25Z\" style=\"fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px\" id=\"e10_shape\" transform=\"matrix(1.95035 0 0 1.95035 63.3783 159.871)\"/><text style=\"fill:black;font-family:Arial;font-size:20px\" x=\"-20.8739\" y=\"90.4333\" id=\"e12_texte\" transform=\"matrix(0.647181 0 0 0.647181 66.9537 119.649)\">q0</text>\n  <path d=\"M131.242213,34.404272l10.517,-1.248l-0.178,10.695Z\" style=\"fill:slategray;stroke:black;stroke-width:1px\" id=\"e14_pathH\" transform=\"matrix(1.61848 2.0786 -2.0786 1.61848 124.893 -208.016)\"/><text style=\"fill:black;font-family:Arial;font-size:20px\" x=\"121.086\" y=\"-13.285\" id=\"e2_texte\" transform=\"matrix(0.647181 0 0 0.647181 66.9537 119.649)\">q2</text><text style=\"fill:black;font-family:Arial;font-size:20px\" x=\"238.27\" y=\"-13.2019\" id=\"e1_texte\" transform=\"matrix(0.647181 0 0 0.647181 66.9537 119.649)\">q3</text><text style=\"fill:black;font-family:Arial;font-size:20px\" x=\"298.676\" y=\"22.4731\" id=\"e3_texte\" transform=\"matrix(0.647181 0 0 0.647181 50.9109 123.927)\">q4</text><text style=\"fill:black;font-family:Arial;font-size:20px\" x=\"169.218\" y=\"156.809\" id=\"e4_texte\" transform=\"matrix(0.647181 0 0 0.647181 66.9537 119.649)\">q5</text>\n  <path d=\"M111.937414,77.36697l-0.357,10.517l-7.487,-6.239Z\" style=\"fill:black;stroke:black;stroke-width:1px\" id=\"e16_pathH\" transform=\"matrix(2.63439 0 0 2.63439 -85.5948 -11.4463)\"/>\n  <path d=\"M27.653964,36.512168v-2l2,4l-2,4v-2h-4v2l-2,-4l2,-4v2Z\" style=\"fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px\" id=\"e17_shape\" transform=\"matrix(-1.81304 -0.0757995 0.0533943 -1.27717 295.055 204.365)\"/>\n  <path d=\"M-65.312176,34.370298v-2l2,4l-2,4v-2h-4v2l-2,-4l2,-4v2Z\" style=\"fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px\" id=\"e12_shape\" transform=\"matrix(-1.09186 1.44939 -1.02099 -0.769144 201.578 239.761)\"/>\n  <path d=\"M-66.143014,80.867736v-2l2,4l-2,4v-2h-4v2l-2,-4l2,-4v2Z\" style=\"fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px\" id=\"e1_shape\" transform=\"matrix(1.21271 1.34991 -0.950921 0.854266 326.747 113.203)\"/>\n  <path d=\"M-16.318499,7.979807l1.25,-1.875v1.25c10,0,8,6.25,0,6.25v-1.25c10,0,8,-3.75,0,-3.75v1.25Z\" style=\"fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px\" id=\"e18_shape\" transform=\"matrix(1.83076 0 0 1.83076 137.805 156.748)\"/>\n  \n  <text style=\"fill:black;font-family:Arial;font-size:20px\" x=\"157.786\" y=\"44.265\" id=\"e5_texte\" transform=\"matrix(0.647181 0 0 0.647181 66.9537 119.649)\">q1</text>\n  <rect x=\"86.143300\" y=\"56.073900\" style=\"fill:black;stroke:black;stroke-width:1px\" id=\"e19_rectangle\" width=\"3.565500\" height=\"7.308000\" transform=\"matrix(2.63439 0 0 2.63439 -85.5948 -11.4463)\"/>\n  <path d=\"M-15.385171,48.473632v-2l2,4l-2,4v-2h-4v2l-2,-4l2,-4v2Z\" style=\"fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px\" id=\"e3_shape\" transform=\"matrix(-1.18893 1.37089 -0.965698 -0.837525 223.92 291.97)\"/>\n  <path d=\"M68.766391,12.149488l-13.191,16.934l26.203,0.357Z\" style=\"fill:orange;stroke:black;stroke-width:1px\" id=\"e21_pathH\" transform=\"matrix(2.63439 0 0 2.63439 -85.5948 -11.4463)\"/>\n  <rect x=\"59.242500\" y=\"33.743600\" style=\"fill:orange;stroke:black;stroke-width:1px\" id=\"e22_rectangle\" width=\"19.252300\" height=\"14.439200\" transform=\"matrix(2.63439 0 0 2.63439 -85.5948 -11.4463)\"/>\n  <rect x=\"66.81529998779297\" y=\"66.21880340576172\" style=\"fill:black;stroke:black;stroke-width:1px\" id=\"e3_rectangle\" width=\"4.813250\" height=\"7.308000\" transform=\"matrix(2.63439 0 0 2.63439 -85.5948 -11.4463)\"/>\n<rect x=\"32.790200\" y=\"151.395000\" style=\"fill:black;stroke:black;stroke-width:1px\" id=\"e1_rectangle\" width=\"118.605000\" height=\"13.954000\"/><path d=\"M-26.926136,-4.289773l1.25,-1.5625v1.25a8,8,0,0,1,6.25,6a2,2,0,0,0,-3.125,0.625a4.6,4.6,0,0,0,-3.125,-5.875v1.25Z\" style=\"fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px\" id=\"e4_shape\" transform=\"matrix(1.94906 0 0 1.94906 203.876 142.569)\"/><path d=\"M-20.840898,1.795451l1.25,-1.5625v1.25a8,8,0,0,1,6.25,6a2,2,0,0,0,-3.125,0.625a4.6,4.6,0,0,0,-3.125,-5.875v1.25Z\" style=\"fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px\" id=\"e11_shape\" transform=\"matrix(1.94906 0 0 -1.94906 192.016 162.314)\"/><polygon style=\"stroke:black;fill:orange;stroke-width:1px\" id=\"e2_polygon\" points=\"87.8844,51.6222,100.005,38.6102,119.078,35.7582,119.613,38.6096,101.61,42.3532,90.0234,56.7916\" transform=\"matrix(2.63439 0 0 2.63439 -85.5948 -11.4463)\"/><circle id=\"e5_circle\" cx=\"231.623\" cy=\"86.5115\" style=\"fill:black;stroke:black;stroke-width:1px\" r=\"6.977000\"/><circle id=\"e2_circle\" cx=\"265.111000\" cy=\"119.302000\" style=\"fill:black;stroke:black;stroke-width:1px\" r=\"6.977000\"/><circle id=\"e1_circle\" cx=\"146.506000\" cy=\"131.860000\" style=\"fill:black;stroke:black;stroke-width:1px\" r=\"9.45653\"/><circle id=\"e3_circle\" cx=\"182.785000\" cy=\"203.721000\" style=\"fill:black;stroke:black;stroke-width:1px\" r=\"6.977000\"/></svg>",
+        "clickableShapes": [],
+        "javascriptHandlers": [],
+        "smilAnimations": [],
+        "bindings": [],
+        "showCoordinates": false,
+        "autoFormatAfterEdit": false,
+        "showBrowserErrors": false,
+        "showBrowserEvents": false,
+        "enableJsDebugging": false,
+        "sendMsgWhenLoaded": false,
+        "noClickWhenDblClick": false,
+        "outputField": "payload",
+        "editorUrl": "//drawsvg.org/drawsvg.html",
+        "directory": "",
+        "panning": "both",
+        "zooming": "enabled",
+        "panOnlyWhenZoomed": false,
+        "doubleClickZoomEnabled": true,
+        "mouseWheelZoomEnabled": true,
+        "dblClickZoomPercentage": 150,
+        "cssString": "div.ui-svg svg{\n    color: var(--nr-dashboard-widgetColor);\n    fill: currentColor !important;\n}\ndiv.ui-svg path {\n    fill: inherit;\n}",
+        "name": "Excavator",
+        "x": 100,
+        "y": 520,
+        "wires": [
+            []
+        ],
+        "icon": "font-awesome/fa-image"
+    },
+    {
+        "id": "7466fa3ba965ce0c",
+        "type": "delay",
+        "z": "d330a0772780126e",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "5",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 80,
+        "wires": [
+            [
+                "1ae082d0b2483fa2",
+                "c4022601d7cdd2d1"
+            ]
+        ]
+    },
+    {
+        "id": "c4022601d7cdd2d1",
+        "type": "debug",
+        "z": "d330a0772780126e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 160,
+        "wires": []
+    }
+]
