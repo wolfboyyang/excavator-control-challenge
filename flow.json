@@ -555,5 +555,189 @@
         "x": 950,
         "y": 160,
         "wires": []
+    },
+    {
+        "id": "b6f402485ef9b19d",
+        "type": "template",
+        "z": "d330a0772780126e",
+        "name": "set command",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{    \n    \"command\": \"setTargetPosition\",\n    \"x\": {{flow.x}},\n    \"y\": {{flow.y}},\n    \"z\": {{flow.z}}\n}",
+        "output": "json",
+        "x": 700,
+        "y": 420,
+        "wires": [
+            [
+                "c57755911112c95b"
+            ]
+        ]
+    },
+    {
+        "id": "764bc469d7799bdd",
+        "type": "ui_slider",
+        "z": "d330a0772780126e",
+        "name": "",
+        "label": "x",
+        "tooltip": "",
+        "group": "4efd622c63e10aca",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "x",
+        "topicType": "msg",
+        "min": "-3",
+        "max": "3",
+        "step": "0.1",
+        "className": "",
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "41dc7120be26065c"
+            ]
+        ]
+    },
+    {
+        "id": "41dc7120be26065c",
+        "type": "change",
+        "z": "d330a0772780126e",
+        "name": "set value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "x",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 360,
+        "wires": [
+            [
+                "b6f402485ef9b19d"
+            ]
+        ]
+    },
+    {
+        "id": "2f78dae91e42cbcc",
+        "type": "ui_slider",
+        "z": "d330a0772780126e",
+        "name": "",
+        "label": "y",
+        "tooltip": "",
+        "group": "4efd622c63e10aca",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "y",
+        "topicType": "msg",
+        "min": "-3",
+        "max": "3",
+        "step": "0.1",
+        "className": "",
+        "x": 330,
+        "y": 420,
+        "wires": [
+            [
+                "46227a958995f914"
+            ]
+        ]
+    },
+    {
+        "id": "46227a958995f914",
+        "type": "change",
+        "z": "d330a0772780126e",
+        "name": "set value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "y",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 420,
+        "wires": [
+            [
+                "b6f402485ef9b19d"
+            ]
+        ]
+    },
+    {
+        "id": "bed7a4edd74a8c13",
+        "type": "ui_slider",
+        "z": "d330a0772780126e",
+        "name": "",
+        "label": "z",
+        "tooltip": "",
+        "group": "4efd622c63e10aca",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "z",
+        "topicType": "msg",
+        "min": "0",
+        "max": "3",
+        "step": "0.1",
+        "className": "",
+        "x": 330,
+        "y": 480,
+        "wires": [
+            [
+                "b6f2fc55213a29be"
+            ]
+        ]
+    },
+    {
+        "id": "b6f2fc55213a29be",
+        "type": "change",
+        "z": "d330a0772780126e",
+        "name": "set value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "z",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 480,
+        "wires": [
+            [
+                "b6f402485ef9b19d"
+            ]
+        ]
     }
 ]
