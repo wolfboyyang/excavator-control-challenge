@@ -170,6 +170,25 @@
         "className": ""
     },
     {
+        "id": "93892d22.50ab8",
+        "type": "ui_group",
+        "name": "charts",
+        "tab": "a24618c5.be59c8",
+        "order": 1,
+        "disp": true,
+        "width": "14",
+        "collapse": false
+    },
+    {
+        "id": "a24618c5.be59c8",
+        "type": "ui_tab",
+        "name": "tab 1",
+        "icon": "weekend",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
         "id": "1ae082d0b2483fa2",
         "type": "mqtt out",
         "z": "d330a0772780126e",
@@ -267,7 +286,7 @@
         "label": "q0 🏠",
         "tooltip": "cabin - spin",
         "group": "4efd622c63e10aca",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -282,7 +301,8 @@
         "y": 140,
         "wires": [
             [
-                "eeddfc582b622107"
+                "eeddfc582b622107",
+                "977aaf237cc0e3fa"
             ]
         ]
     },
@@ -294,7 +314,7 @@
         "label": "q1 🧹",
         "tooltip": "arm - left/right",
         "group": "4efd622c63e10aca",
-        "order": 6,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -309,7 +329,8 @@
         "y": 200,
         "wires": [
             [
-                "eeddfc582b622107"
+                "eeddfc582b622107",
+                "144d50f33525b011"
             ]
         ]
     },
@@ -321,7 +342,7 @@
         "label": "q2 🦿",
         "tooltip": "back arm - up/down",
         "group": "4efd622c63e10aca",
-        "order": 7,
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -336,7 +357,8 @@
         "y": 260,
         "wires": [
             [
-                "eeddfc582b622107"
+                "eeddfc582b622107",
+                "464548aefd78e62e"
             ]
         ]
     },
@@ -348,7 +370,7 @@
         "label": "q3 🦾",
         "tooltip": " front arm - up/down",
         "group": "4efd622c63e10aca",
-        "order": 8,
+        "order": 9,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -363,7 +385,8 @@
         "y": 320,
         "wires": [
             [
-                "eeddfc582b622107"
+                "eeddfc582b622107",
+                "0137590bd5044b02"
             ]
         ]
     },
@@ -375,7 +398,7 @@
         "label": "q4 🥄",
         "tooltip": "shovel",
         "group": "4efd622c63e10aca",
-        "order": 9,
+        "order": 10,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -390,7 +413,8 @@
         "y": 380,
         "wires": [
             [
-                "eeddfc582b622107"
+                "eeddfc582b622107",
+                "eece563625722457"
             ]
         ]
     },
@@ -402,7 +426,7 @@
         "label": "q5 🛡️",
         "tooltip": "shield",
         "group": "4efd622c63e10aca",
-        "order": 10,
+        "order": 11,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -436,7 +460,8 @@
         "y": 260,
         "wires": [
             [
-                "c57755911112c95b"
+                "c57755911112c95b",
+                "5032cfbe1e3a17bd"
             ]
         ]
     },
@@ -544,7 +569,7 @@
         "type": "debug",
         "z": "d330a0772780126e",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -552,8 +577,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 950,
-        "y": 160,
+        "x": 1010,
+        "y": 200,
         "wires": []
     },
     {
@@ -571,7 +596,8 @@
         "y": 420,
         "wires": [
             [
-                "c57755911112c95b"
+                "c57755911112c95b",
+                "5032cfbe1e3a17bd"
             ]
         ]
     },
@@ -583,7 +609,7 @@
         "label": "x",
         "tooltip": "",
         "group": "4efd622c63e10aca",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -638,7 +664,7 @@
         "label": "y",
         "tooltip": "",
         "group": "4efd622c63e10aca",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -693,7 +719,7 @@
         "label": "z",
         "tooltip": "",
         "group": "4efd622c63e10aca",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -737,6 +763,270 @@
         "wires": [
             [
                 "b6f402485ef9b19d"
+            ]
+        ]
+    },
+    {
+        "id": "5032cfbe1e3a17bd",
+        "type": "function",
+        "z": "d330a0772780126e",
+        "name": "",
+        "func": "const geo = [\n    [0.68, -0.63, 0.38], // q0, Kabine_zu_Radlauf2\n    [-0.142, 0.107, 0.02], // q1, BaggerVerbindungArm2_zu_BaggerVerbindungArm\n    [0.935, 0, 0], //q2, ZylAusleger_zu_ZylAuslegerKolbenstange\n    [1.035, 0, 0], // q3, ZylArm_zu_ZylArmKolbenstange\n    [0, 0, 0.795], // q4, ZylLoeffel_zu_ZylLoeffelKolbenstange\n  ] \n//IK = InverseKinematic(geo);\n\nconst rot_z = math.matrix( [[0, -1, 0],\n                            [1,  0, 0],\n                            [0,  0, 1]])\n                            \n//const q0 = math.matrix([[0, cos(), 0],\n//                        [1,  0, 0],\n//                        [0,  0, 1]])\n\np0 = [0.68, -0.63, 0.38]\np10 = [0.3, -0.31, 0.08]\np11 = [-0.142, 0.107, 0.02]\np1 = math.chain(rot_z).multiply(p11).add(p10).done();\np2 = [-0.17, -0.08, 0.09]\np3 = [-1.4, 0.02, 1.06]\np4 = [0.05, 0, -1.14]\n\ntx = flow.get('x')\nty = flow.get('y')\ntz = flow.get('z')\n\n\nq0 = flow.get('q0');\nq1 = flow.get('q1');\nq2 = flow.get('q2');\nq3 = flow.get('q3');\nq4 = flow.get('q4');\n\nif(!q0) q0=0\nif(!q1) q1=0\nif(!q2) q2=0\nif(!q3) q3=0\nif(!q4) q4=0\n\n\n//q0 = math.atan2(ty, tx)\n// base_link <- Kabine\nj0 = p0\n\n// q1 - Kabine <- Bagger_Verbindung_Arm\n//             <- Arm1_zu_BaggerVerbindungArm2\nmq0 = math.matrix( [[math.cos(q0),  -math.sin(q0), 0],\n                    [math.sin(q0),   math.cos(q0), 0],\n                    [           0,              0, 1]])\nm0 = math.chain(rot_z).multiply(mq0).done()\nj1 = math.chain(m0).multiply(p1).add(j0).done()\n\nmq1 = math.matrix( [[math.cos(q1), -math.sin(q1), 0],\n                    [math.sin(q1),  math.cos(q1), 0],\n                    [           0,             0, 1]])\nm1 = math.chain(m0).multiply(rot_z).multiply(mq1).done()\nj2 = math.chain(m1).multiply(p2).add(j1).done()\n\n// mimic q2 - Arm1_zu_BaggerVerbindungArm2 <- Arm1\nmultiplier = -4.5774\noffset = -0.4517\nq2 = q2 * multiplier + offset\nmq2 = math.matrix( [[ math.cos(q2), 0, math.sin(q2)],\n                    [            0, 1,            0],\n                    [-math.sin(q2), 0, math.cos(q2)]])\nm2 = math.chain(m1).multiply(mq2).done();\n\nj3 = math.chain(m2).multiply(p3).add(j2).done()\n\n// mimic q3 - Arm1 <- Arm2\nmultiplier = -5.1897\noffset = -0.217\nq3 = q3 * multiplier + offset\nmq3 = math.matrix( [[ math.cos(q3), 0, math.sin(q3)],\n                    [            0, 1,            0],\n                    [-math.sin(q3), 0, math.cos(q3)]])\nm3 = math.chain(m2).multiply(mq3).done();\n\nj4 = math.chain(m3).multiply(p4).add(j3).done()\n// Arm2 <- Loeffel\n// target is j4 where Loeffel attached \ndp = j4\n\n//flow.set('dx', j0[0]);\n//flow.set('dy', j0[1]);\n//flow.set('dz', j0[2]);\nflow.set(\"dx\", dp.subset(math.index(0)))\nflow.set(\"dy\", dp.subset(math.index(1)))\nflow.set(\"dz\", dp.subset(math.index(2)))\n\nmsg.payload = dp\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "math",
+                "module": "mathjs"
+            }
+        ],
+        "x": 540,
+        "y": 640,
+        "wires": [
+            [
+                "12ee300a7adda352"
+            ]
+        ]
+    },
+    {
+        "id": "e97177b69a01f737",
+        "type": "debug",
+        "z": "d330a0772780126e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "12ee300a7adda352",
+        "type": "template",
+        "z": "d330a0772780126e",
+        "name": "set setDummyPosition",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{    \n    \"command\": \"setDummyPosition\",\n    \"x\": {{flow.dx}},\n    \"y\": {{flow.dy}},\n    \"z\": {{flow.dz}}\n}",
+        "output": "json",
+        "x": 780,
+        "y": 560,
+        "wires": [
+            [
+                "e30c3c28f211a1ae"
+            ]
+        ]
+    },
+    {
+        "id": "e30c3c28f211a1ae",
+        "type": "template",
+        "z": "d330a0772780126e",
+        "name": "command",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "rwth/bcma/sessions/{{flow.session}}/command",
+        "output": "str",
+        "x": 1000,
+        "y": 560,
+        "wires": [
+            [
+                "b975c1c3bbb70474",
+                "e97177b69a01f737"
+            ]
+        ]
+    },
+    {
+        "id": "ef3532b518a3d479",
+        "type": "mqtt out",
+        "z": "d330a0772780126e",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "0.5",
+        "broker": "55d5cfdcf261b351",
+        "x": 1090,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "b975c1c3bbb70474",
+        "type": "delay",
+        "z": "d330a0772780126e",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "5",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 320,
+        "wires": [
+            [
+                "ef3532b518a3d479",
+                "c4022601d7cdd2d1"
+            ]
+        ]
+    },
+    {
+        "id": "977aaf237cc0e3fa",
+        "type": "change",
+        "z": "d330a0772780126e",
+        "name": "set value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "q0",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 540,
+        "wires": [
+            [
+                "5032cfbe1e3a17bd"
+            ]
+        ]
+    },
+    {
+        "id": "144d50f33525b011",
+        "type": "change",
+        "z": "d330a0772780126e",
+        "name": "set value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "q1",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 580,
+        "wires": [
+            [
+                "5032cfbe1e3a17bd"
+            ]
+        ]
+    },
+    {
+        "id": "464548aefd78e62e",
+        "type": "change",
+        "z": "d330a0772780126e",
+        "name": "set value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "q2",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 620,
+        "wires": [
+            [
+                "5032cfbe1e3a17bd"
+            ]
+        ]
+    },
+    {
+        "id": "0137590bd5044b02",
+        "type": "change",
+        "z": "d330a0772780126e",
+        "name": "set value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "q3",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 660,
+        "wires": [
+            [
+                "5032cfbe1e3a17bd"
+            ]
+        ]
+    },
+    {
+        "id": "eece563625722457",
+        "type": "change",
+        "z": "d330a0772780126e",
+        "name": "set value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "q4",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 240,
+        "y": 740,
+        "wires": [
+            [
+                "5032cfbe1e3a17bd"
             ]
         ]
     }
