@@ -194,8 +194,8 @@
         "correl": "",
         "expiry": "0.5",
         "broker": "55d5cfdcf261b351",
-        "x": 1590,
-        "y": 120,
+        "x": 1470,
+        "y": 80,
         "wires": []
     },
     {
@@ -209,8 +209,8 @@
         "syntax": "mustache",
         "template": "rwth/bcma/sessions/{{flow.session}}/command",
         "output": "str",
-        "x": 1260,
-        "y": 120,
+        "x": 1140,
+        "y": 80,
         "wires": [
             [
                 "7466fa3ba965ce0c"
@@ -235,8 +235,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 860,
-        "y": 40,
+        "x": 80,
+        "y": 80,
         "wires": [
             [
                 "4b46c60a88b71feb"
@@ -262,8 +262,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1020,
-        "y": 40,
+        "x": 240,
+        "y": 80,
         "wires": [
             [
                 "c57755911112c95b"
@@ -546,8 +546,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1420,
-        "y": 120,
+        "x": 1300,
+        "y": 80,
         "wires": [
             [
                 "1ae082d0b2483fa2"
@@ -582,8 +582,8 @@
         "syntax": "mustache",
         "template": "{    \n    \"command\": \"setTargetPosition\",\n    \"x\": {{flow.x}},\n    \"y\": {{flow.y}},\n    \"z\": {{flow.z}}\n}",
         "output": "json",
-        "x": 1020,
-        "y": 120,
+        "x": 520,
+        "y": 220,
         "wires": [
             [
                 "c57755911112c95b",
@@ -610,8 +610,8 @@
         "max": "4.151",
         "step": "0.001",
         "className": "",
-        "x": 570,
-        "y": 60,
+        "x": 70,
+        "y": 160,
         "wires": [
             [
                 "41dc7120be26065c"
@@ -638,8 +638,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 700,
-        "y": 60,
+        "x": 200,
+        "y": 160,
         "wires": [
             [
                 "db31b969e4c41384"
@@ -665,8 +665,8 @@
         "max": "2.841",
         "step": "0.001",
         "className": "",
-        "x": 570,
-        "y": 120,
+        "x": 70,
+        "y": 220,
         "wires": [
             [
                 "46227a958995f914"
@@ -693,8 +693,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 700,
-        "y": 120,
+        "x": 200,
+        "y": 220,
         "wires": [
             [
                 "db31b969e4c41384"
@@ -720,8 +720,8 @@
         "max": "2.930",
         "step": "0.001",
         "className": "",
-        "x": 570,
-        "y": 180,
+        "x": 70,
+        "y": 280,
         "wires": [
             [
                 "b6f2fc55213a29be"
@@ -748,8 +748,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 700,
-        "y": 180,
+        "x": 200,
+        "y": 280,
         "wires": [
             [
                 "db31b969e4c41384"
@@ -830,8 +830,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 860,
-        "y": 120,
+        "x": 360,
+        "y": 220,
         "wires": [
             [
                 "b6f402485ef9b19d"
@@ -843,7 +843,7 @@
         "type": "function",
         "z": "d330a0772780126e",
         "name": "kinematic",
-        "func": "const rot_z =  [[0, -1, 0],\n                [1,  0, 0],\n                [0,  0, 1]]\n\nconst p0 = [0.68, -0.63, 0.38]\nconst p10 = [0.3, -0.31, 0.08]\nconst p11 = [-0.142, 0.107, 0.02]\nconst p1 = math.chain(rot_z).multiply(p11).add(p10).done();\n// add p3.y to p2.y to make j2,j3,j4 in line when projected to global xy plane\nconst p2 = [-0.17, -0.08 + 0.02, 0.09] // origin p2 [-0.17, -0.08, 0.09]\nconst p3 = [-1.4, 0.02 - 0.02, 1.06] // origin p3 [-1.4, 0.02, 1.06]\nconst p4 = [0.05, 0, -1.14]\n\nconst mq2_range = [-0.4517, 0.46378]\nconst mq3_range = [-0.217, 1.910777]\n\n//tx = flow.get('x')\n//ty = flow.get('y')\n//tz = flow.get('z')\n//j4 = [tx, ty, tz]\n\nq0 = flow.get('q0')\nq1 = flow.get('q1')\nq2 = flow.get('q2')\nq3 = flow.get('q3')\n\nif(!q0) q0 = 0\nif(!q1) q1 = 0\nif(!q2) q2 = 0\nif(!q3) q3 = 0\n\n// base_link <- Kabine\nj0 = p0\n\n// q1 - Kabine <- Bagger_Verbindung_Arm\n//             <- Arm1_zu_BaggerVerbindungArm2\nmq0 = math.matrix( [[math.cos(q0),  -math.sin(q0), 0],\n                    [math.sin(q0),   math.cos(q0), 0],\n                    [           0,              0, 1]])\nm0 = math.chain(rot_z).multiply(mq0).done()\nj1 = math.chain(m0).multiply(p1).add(j0).done()\n\nmq1 = math.matrix( [[math.cos(q1), -math.sin(q1), 0],\n                    [math.sin(q1),  math.cos(q1), 0],\n                    [           0,             0, 1]])\nm1 = math.chain(m0).multiply(rot_z).multiply(mq1).done()\nj2 = math.chain(m1).multiply(p2).add(j1).done()\n\n// calculate q2, q3 in xz plane\n// mimic q2 - Arm1_zu_BaggerVerbindungArm2 <- Arm1\nmultiplier = -4.5774\noffset = -0.4517\n// For forward kinematic, q2 = q2 * multiplier + offset\n// For inverse kinematic\nmq2 = q2 * multiplier + offset\n\nmmq2 = math.matrix( [[ math.cos(mq2), 0, math.sin(mq2)],\n                    [            0, 1,            0],\n                    [-math.sin(mq2), 0, math.cos(mq2)]])\nm2 = math.chain(m1).multiply(mmq2).done();\n\nj3 = math.chain(m2).multiply(p3).add(j2).done()\n\n// mimic q3 - Arm1 <- Arm2\nmultiplier = -5.1897\noffset = -0.217\n\n// For forward kinematic, mq3 = q3 * multiplier + offset\n// For inverse kinematic\nmq3 = q3 * multiplier + offset\n\nmmq3 = math.matrix( [[ math.cos(mq3), 0, math.sin(mq3)],\n                    [            0, 1,            0],\n                    [-math.sin(mq3), 0, math.cos(mq3)]])\nm3 = math.chain(m2).multiply(mmq3).done();\n\nj4 = math.chain(m3).multiply(p4).add(j3).done()\n// Arm2 <- Loeffel\n// target is j4 where Loeffel attached \n\ndp = j4\n\n//flow.set('dx', j0[0]);\n//flow.set('dy', j0[1]);\n//flow.set('dz', j0[2]);\n//flow.set('dx', dp.subset(math.index(0)))\n//flow.set('dy', dp.subset(math.index(1)))\n//flow.set('dz', dp.subset(math.index(2)))\ndx = dp.subset(math.index(0))\ndy = dp.subset(math.index(1))\ndz = dp.subset(math.index(2))\nfunction jointMsg(value) {\n    return {\n        payload: value,\n    }\n}\n//outputMsgs = []\n//outputMsgs.push(jointMsg(q0))\n//outputMsgs.push(jointMsg(q1))\n//outputMsgs.push(jointMsg(q2))\n//outputMsgs.push(jointMsg(q3))\n//outputMsgs.push(jointMsg(a2))\nmsg.payload = {q0,q1,q2, q3, dx, dy, dz}\nreturn msg;",
+        "func": "const rot_z =  [[0, -1, 0],\n                [1,  0, 0],\n                [0,  0, 1]]\n\nconst p0 = [0.68, -0.63, 0.38]\nconst p10 = [0.3, -0.31, 0.08]\nconst p11 = [-0.142, 0.107, 0.02]\nconst p1 = math.chain(rot_z).multiply(p11).add(p10).done();\n// add p3.y to p2.y to make j2,j3,j4 in line when projected to global xy plane\nconst p2 = [-0.17, -0.08 + 0.02, 0.09] // origin p2 [-0.17, -0.08, 0.09]\nconst p3 = [-1.4, 0.02 - 0.02, 1.06] // origin p3 [-1.4, 0.02, 1.06]\nconst p4 = [0.05, 0, -1.14]\n\nconst mq2_range = [-0.4517, 0.46378]\nconst mq3_range = [-0.217, 1.910777]\n\n//tx = flow.get('x')\n//ty = flow.get('y')\n//tz = flow.get('z')\n//j4 = [tx, ty, tz]\n\nq0 = flow.get('q0')\nq1 = flow.get('q1')\nq2 = flow.get('q2')\nq3 = flow.get('q3')\n\nif(!q0) q0 = 0\nif(!q1) q1 = 0\nif(!q2) q2 = 0\nif(!q3) q3 = 0\n\nfunction length_of_vector(v) {\n    if (math.count(v) == 2)\n        return math.distance(v, [0, 0])\n    else \n        return math.distance(v, [0, 0, 0])\n}\nfunction angle_of_vector(v1, v2){\n    return math.evaluate(`acos(${math.multiply(v1,v2)}/(${length_of_vector(v1)}*${length_of_vector(v2)}))`)\n}\nfunction rotate_axis_z(angle) {\n    return [[math.cos(angle), -math.sin(angle), 0],\n            [math.sin(angle),  math.cos(angle), 0],\n            [              0,                0, 1]]\n}\nfunction rotate_axis_y(angle) {\n    return [[ math.cos(angle), 0, math.sin(angle)],\n            [            0, 1,            0],\n            [-math.sin(angle), 0, math.cos(angle)]]\n}\n\n// base_link <- Kabine\nj0 = p0\n\n// q1 - Kabine <- Bagger_Verbindung_Arm\n//             <- Arm1_zu_BaggerVerbindungArm2\nmq0 = rotate_axis_z(q0)\nm0 = math.chain(rot_z).multiply(mq0).done()\nj1 = math.chain(m0).multiply(p1).add(j0).done()\n\nmq1 = rotate_axis_z(q1)\nm1 = math.chain(m0).multiply(rot_z).multiply(mq1).done()\nj2 = math.chain(m1).multiply(p2).add(j1).done()\n\n// calculate q2, q3 in xz plane\n// mimic q2 - Arm1_zu_BaggerVerbindungArm2 <- Arm1\nmultiplier = -4.5774\noffset = -0.4517\n// For forward kinematic, q2 = q2 * multiplier + offset\n// For inverse kinematic\nmq2 = q2 * multiplier + offset\n\nmmq2 = rotate_axis_y(mq2)\nm2 = math.chain(m1).multiply(mmq2).done();\n\nj3 = math.chain(m2).multiply(p3).add(j2).done()\n\n// mimic q3 - Arm1 <- Arm2\nmultiplier = -5.1897\noffset = -0.217\n\n// For forward kinematic, mq3 = q3 * multiplier + offset\n// For inverse kinematic\nmq3 = q3 * multiplier + offset\n\nmmq3 = rotate_axis_y(mq3)\nm3 = math.chain(m2).multiply(mmq3).done();\n\nj4 = math.chain(m3).multiply(p4).add(j3).done()\n// Arm2 <- Loeffel\n// target is j4 where Loeffel attached \n\ndp = j4\n\ndx = dp[0]\ndy = dp[1]\ndz = dp[2]\n\nmsg.payload = {q0,q1,q2, q3, dx, dy, dz}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -975,82 +975,6 @@
         ]
     },
     {
-        "id": "ce22bdeeb058e54d",
-        "type": "ui_joystick",
-        "z": "d330a0772780126e",
-        "name": "xy",
-        "group": "837bcbb6a5e8e7eb",
-        "order": 1,
-        "width": "6",
-        "height": "6",
-        "trigger": "all",
-        "timeInterval": "0",
-        "useThemeColor": true,
-        "color": "#000000",
-        "threshold": "0.455",
-        "directions": "all",
-        "shape": "circle",
-        "centerAtRelease": false,
-        "x": 70,
-        "y": 80,
-        "wires": [
-            [
-                "0afb918c967227a7"
-            ]
-        ]
-    },
-    {
-        "id": "8ec06071cbc8a9b7",
-        "type": "ui_joystick",
-        "z": "d330a0772780126e",
-        "name": "rz",
-        "group": "837bcbb6a5e8e7eb",
-        "order": 2,
-        "width": "6",
-        "height": "6",
-        "trigger": "all",
-        "timeInterval": 0,
-        "useThemeColor": true,
-        "color": "#000000",
-        "threshold": "0",
-        "directions": "all",
-        "shape": "squere",
-        "centerAtRelease": false,
-        "x": 70,
-        "y": 160,
-        "wires": [
-            [
-                "1110c8a4e43540ea"
-            ]
-        ]
-    },
-    {
-        "id": "0938bc06bef3126a",
-        "type": "function",
-        "z": "d330a0772780126e",
-        "name": "",
-        "func": "const work_radius = 0.622 + 1.756 + 1.141 // j2_j0.x + |p3|+|p4|\nconst work_center = [0.68, -0.63]\n\nx = work_center[0] + work_radius * msg.payload.vector.x\ny = work_center[1] + work_radius * msg.payload.vector.y\n\nreturn [{payload:x}, {payload:y}]",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 80,
-        "wires": [
-            [
-                "764bc469d7799bdd"
-            ],
-            [
-                "2f78dae91e42cbcc"
-            ]
-        ],
-        "outputLabels": [
-            "x",
-            "y"
-        ]
-    },
-    {
         "id": "0af73d57d39283f2",
         "type": "function",
         "z": "d330a0772780126e",
@@ -1066,31 +990,6 @@
         "wires": [
             [
                 "12ee300a7adda352"
-            ]
-        ]
-    },
-    {
-        "id": "0afb918c967227a7",
-        "type": "delay",
-        "z": "d330a0772780126e",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "20",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 220,
-        "y": 80,
-        "wires": [
-            [
-                "0938bc06bef3126a"
             ]
         ]
     },
@@ -1113,162 +1012,12 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 130,
+        "x": 110,
         "y": 400,
         "wires": [
             [
                 "5032cfbe1e3a17bd"
             ]
-        ]
-    },
-    {
-        "id": "1110c8a4e43540ea",
-        "type": "delay",
-        "z": "d330a0772780126e",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "20",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 220,
-        "y": 160,
-        "wires": [
-            [
-                "73172fc26fa3818a"
-            ]
-        ]
-    },
-    {
-        "id": "73172fc26fa3818a",
-        "type": "function",
-        "z": "d330a0772780126e",
-        "name": "",
-        "func": "const rot_z =  [[0, -1, 0],\n                [1,  0, 0],\n                [0,  0, 1]]\n\nconst p0 = [0.68, -0.63, 0.38]\nconst p10 = [0.3, -0.31, 0.08]\nconst p11 = [-0.142, 0.107, 0.02]\nconst p1 = math.chain(rot_z).multiply(p11).add(p10).done();\n// add p3.y to p2.y to make j2,j3,j4 in line when projected to global xy plane\nconst p2 = [-0.17, -0.08 + 0.02, 0.09] // origin p2 [-0.17, -0.08, 0.09]\nconst p3 = [-1.4, 0.02 - 0.02, 1.06] // origin p3 [-1.4, 0.02, 1.06]\nconst p4 = [0.05, 0, -1.14]\n\nconst work_radius_j2 = 4.151593063330958 - 2.278281091135698\n\nq0 = flow.get('q0')\nq1 = flow.get('q1')\n\nif(!q0) q0 = 0\nif(!q1) q1 = 0\n\nrange_z = [-0.227, 2.930]\n\nfunction rotate_axis_z(angle) {\n    return [[math.cos(angle), -math.sin(angle), 0],\n            [math.sin(angle),  math.cos(angle), 0],\n            [              0,                0, 1]]\n}\n\n// base_link <- Kabine\nj0 = p0\n\n// q1 - Kabine <- Bagger_Verbindung_Arm\n//             <- Arm1_zu_BaggerVerbindungArm2\nmq0 = rotate_axis_z(q0)\nm0 = math.chain(rot_z).multiply(mq0).done()\nj1 = math.chain(m0).multiply(p1).add(j0).done()\n\nmq1 = rotate_axis_z(q1)\nm1 = math.chain(m0).multiply(rot_z).multiply(mq1).done()\nj2 = math.chain(m1).multiply(p2).add(j1).done()\n\naxis_neg_x_j2 = math.multiply(m1, [-1,0,0])\n\nr = work_radius_j2 * (msg.payload.vector.x + 1) * 0.5\nx = j2[0] + r * axis_neg_x_j2[0]\ny = j2[1] + r * axis_neg_x_j2[1]\n\nz = 0.5*(msg.payload.vector.y*(range_z[1]-range_z[0]) + range_z[1]+range_z[0])\n\nreturn [{payload:x}, {payload:y}, {payload:z}, {payload: axis_neg_x_j2}]",
-        "outputs": 4,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [
-            {
-                "var": "math",
-                "module": "mathjs"
-            }
-        ],
-        "x": 380,
-        "y": 160,
-        "wires": [
-            [
-                "764bc469d7799bdd"
-            ],
-            [
-                "2f78dae91e42cbcc"
-            ],
-            [
-                "bed7a4edd74a8c13"
-            ],
-            []
-        ],
-        "outputLabels": [
-            "x",
-            "y",
-            "z",
-            ""
-        ]
-    },
-    {
-        "id": "2de1c17f3797a5c2",
-        "type": "inject",
-        "z": "d330a0772780126e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 350,
-        "y": 660,
-        "wires": [
-            [
-                "a0ea133b0fc73149",
-                "fa1d4dfb8df5ee0b",
-                "65af2b79ddf2324f",
-                "f459b05a8d8fabe5"
-            ]
-        ]
-    },
-    {
-        "id": "92179e4755be4a8c",
-        "type": "inject",
-        "z": "d330a0772780126e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 370,
-        "y": 760,
-        "wires": [
-            [
-                "fa1d4dfb8df5ee0b"
-            ]
-        ]
-    },
-    {
-        "id": "e5648666abcffbf8",
-        "type": "inject",
-        "z": "d330a0772780126e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 370,
-        "y": 820,
-        "wires": [
-            []
         ]
     }
 ]
